@@ -1,13 +1,15 @@
 {
   "name": "muyu-wallpaper-studio",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "private": true,
   "description": "幕予 · 本地 HTML 动态壁纸编辑器",
   "scripts": {
     "start": "node server.cjs",
     "test": "node --test tests/*.test.cjs",
     "examples": "node scripts/examples.cjs && node scripts/plugin-examples.cjs && node scripts/bundle.cjs",
-    "pretest": "npm run examples"
+    "pretest": "npm run examples",
+    "release:build": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-release.ps1",
+    "release:verify": "node scripts/verify-release.cjs"
   },
   "engines": {
     "node": ">=20"

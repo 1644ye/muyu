@@ -33,3 +33,8 @@ docs/*-test-results.txt
 .idea/
 .DS_Store
 Thumbs.db
+
+# Release staging and downloaded runtimes
+release-cache/
+release-stage/
+release-verify/

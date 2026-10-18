@@ -1,5 +1,15 @@
 # muyu
 
+## 普通用户下载（Windows x64）
+
+**推荐：[Muyu-1.0.0-beta.1-windows-x64-portable.zip](https://github.com/1644ye/muyu/releases/download/v1.0.0-beta.1/Muyu-1.0.0-beta.1-windows-x64-portable.zip)** · [发布页面](https://github.com/1644ye/muyu/releases/tag/v1.0.0-beta.1)
+
+完整解压，双击“一键打开.bat”，即可在浏览器使用；便携版已内置 Node.js，无需安装开发环境或编译。仅发布 Windows x64 beta，应用未配置代码签名。GitHub 的 Source code ZIP 是源码，不是便携成品。
+
+编辑器通过本机服务运行；作品保存在浏览器 IndexedDB，服务凭据和日志在 `%LOCALAPPDATA%\Muyu\.runtime`。升级前导出工程备份、停止旧服务再解压新版。CPU/内存壁纸依赖随包本机服务，音频/媒体依赖 WE，联网组件依赖网络与相应 API。WE 单独安装；编辑器导出的壁纸 ZIP 解压后将 index.html 导入 WE，不能把编辑器包当壁纸。
+
+详见 [便携版使用说明](release/使用说明.txt)、[本次验证](release/VALIDATION.md)、[下次发布](release/PUBLISH.md) 和 [许可状态](RIGHTS.md)。尚未完成 WE 实机及全新 Windows 环境验证，因此本次为预发布。以下启动说明主要面向源码用户。
+
 > 更新：CPU/内存等系统指标壁纸现默认本机自动连接导出，无需在 Wallpaper Engine 填连接码。导出会启用本机服务及当前用户登录启动；旧包需重新导出。详见 [自动连接说明](docs/桌面信息连接说明.md)。
 
 # 幕予 · HTML 动态壁纸编辑器

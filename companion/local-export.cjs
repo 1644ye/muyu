@@ -5,7 +5,7 @@ const key='HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run',name='MuyuSy
 async function startup(remove=false){
   if(process.platform!=='win32')throw Error('本机自动连接导出需要 Windows。');
   if(remove){try{await run('reg.exe',['delete',key,'/v',name,'/f'],{windowsHide:true});}catch(e){if(e.code!==1)throw e;}return;}
-  const file=path.resolve(__dirname,'../.runtime/companion-login.vbs');
+  const file=path.join(require('../runtime-paths.cjs').runtime,'companion-login.vbs');
   const command='"'+process.execPath+'" "'+path.join(__dirname,'launch.cjs')+'"';
   fs.writeFileSync(file,'CreateObject("WScript.Shell").Run "'+command.replace(/"/g,'""')+'", 0, False\r\n');
   await run('reg.exe',['add',key,'/v',name,'/t','REG_SZ','/d','wscript.exe "'+file+'"','/f'],{windowsHide:true});

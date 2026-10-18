@@ -7,6 +7,7 @@ const mime = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset
 const server = http.createServer((req,res) => {
   const localPort=server.address()?.port,allowedHosts=new Set([`127.0.0.1:${localPort}`,`localhost:${localPort}`]);
   if(!allowedHosts.has(req.headers.host)){res.writeHead(403).end('Host rejected');return;}
+  if(req.method==='POST'&&req.url==='/__muyu_shutdown'){if(!new Set([`http://127.0.0.1:${localPort}`,`http://localhost:${localPort}`]).has(req.headers.origin)||req.headers['x-muyu-action']!=='stop'){res.writeHead(403).end();return;}res.writeHead(200).end('Stopped');server.close();server.closeIdleConnections();return;}
   if(req.method==='POST'&&req.url==='/__muyu_companion/export-local'){
     if(!new Set([`http://127.0.0.1:${localPort}`,`http://localhost:${localPort}`]).has(req.headers.origin)||req.headers['x-muyu-action']!=='connect'){res.writeHead(403).end('Origin rejected');return;}
     require('./companion/local-export.cjs').prepare().then(info=>{res.writeHead(200,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify(info));}).catch(e=>{res.writeHead(503,{'Content-Type':'application/json'});res.end(JSON.stringify({error:e.message}));});return;
@@ -18,7 +19,7 @@ const server = http.createServer((req,res) => {
   }
   if(req.method==='GET'&&req.url==='/__muyu_health'){
     res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});
-    res.end(JSON.stringify({app:'muyu-wallpaper-studio',version:'1.0.0',workspace:root}));return;
+    res.end(JSON.stringify({app:'muyu-wallpaper-studio',version:require('./package.json').version,workspace:root}));return;
   }
   // Optional local QA output, disabled in normal editor startup. Fixed destinations
   // only, with same-origin protection. Never accepts arbitrary file paths.

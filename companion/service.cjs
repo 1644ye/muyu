@@ -1,5 +1,5 @@
 const http=require('node:http'),os=require('node:os'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{spawn}=require('node:child_process');
-const ROOT=path.resolve(__dirname,'..'),PRIVATE=path.join(ROOT,'.runtime'),CONFIG=path.join(PRIVATE,'companion.json'),DATA=path.join(__dirname,'data');
+const ROOT=path.resolve(__dirname,'..'),PRIVATE=require('../runtime-paths.cjs').runtime,CONFIG=path.join(PRIVATE,'companion.json'),DATA=require('../runtime-paths.cjs').data;
 function configuration(){fs.mkdirSync(PRIVATE,{recursive:true});fs.mkdirSync(DATA,{recursive:true});let c;try{c=JSON.parse(fs.readFileSync(CONFIG,'utf8'));}catch{}if(!c?.token){c={token:crypto.randomBytes(32).toString('hex'),port:18731,origins:['http://127.0.0.1:4173','http://localhost:4173','null'],proxies:{}};fs.writeFileSync(CONFIG,JSON.stringify(c,null,2),{mode:0o600});}return c;}
 const equals=(a,b)=>{const x=Buffer.from(String(a)),y=Buffer.from(String(b));return x.length===y.length&&crypto.timingSafeEqual(x,y);};
 const metricsToken=c=>'metrics-'+crypto.createHmac('sha256',c.token).update('muyu-metrics-v1').digest('hex');
