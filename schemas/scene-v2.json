@@ -1,0 +1,1048 @@
+{
+  "$defs": {
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "gt",
+            "gte",
+            "lt",
+            "lte",
+            "eq",
+            "ne",
+            "exists",
+            "empty",
+            "truthy"
+          ]
+        },
+        "value": {},
+        "all": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        },
+        "any": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        },
+        "not": {
+          "$ref": "#/$defs/condition"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:muyu:scene:2",
+  "title": "幕予场景 v2（声明式，不执行脚本）",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "version",
+    "id",
+    "name",
+    "width",
+    "height",
+    "nodes",
+    "assets",
+    "sources",
+    "pluginDefinitions",
+    "themeVariables",
+    "customCSS"
+  ],
+  "properties": {
+    "format": {
+      "enum": [
+        "muyu-scene"
+      ]
+    },
+    "version": {
+      "enum": [
+        2
+      ],
+      "description": "v1 由 Scene.validate 自动迁移；保存为 v2"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "width": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number"
+    },
+    "fit": {
+      "type": "string"
+    },
+    "quality": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "speed": {
+      "type": "number"
+    },
+    "intensity": {
+      "type": "number"
+    },
+    "background": {
+      "type": "object"
+    },
+    "effects": {
+      "type": "object"
+    },
+    "nodes": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "w": {
+            "type": "number"
+          },
+          "h": {
+            "type": "number"
+          },
+          "rotation": {
+            "type": "number"
+          },
+          "opacity": {
+            "type": "number"
+          },
+          "visible": {
+            "type": "boolean"
+          },
+          "locked": {
+            "type": "boolean"
+          },
+          "group": {},
+          "anchor": {
+            "type": "string"
+          },
+          "keepRatio": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "string"
+          },
+          "font": {
+            "type": "string"
+          },
+          "fontAsset": {},
+          "fontSize": {
+            "type": "number"
+          },
+          "fontWeight": {
+            "type": "number"
+          },
+          "color": {
+            "type": "string"
+          },
+          "letterSpacing": {
+            "type": "number"
+          },
+          "lineHeight": {
+            "type": "number"
+          },
+          "align": {
+            "type": "string"
+          },
+          "stroke": {
+            "type": "number"
+          },
+          "strokeColor": {
+            "type": "string"
+          },
+          "shadow": {
+            "type": "number"
+          },
+          "asset": {},
+          "fit": {
+            "type": "string"
+          },
+          "radius": {
+            "type": "number"
+          },
+          "border": {
+            "type": "number"
+          },
+          "borderColor": {
+            "type": "string"
+          },
+          "fill": {
+            "type": "string"
+          },
+          "fillOpacity": {
+            "type": "number"
+          },
+          "shape": {
+            "type": "string"
+          },
+          "clockStyle": {
+            "type": "string"
+          },
+          "hour12": {
+            "type": "boolean"
+          },
+          "seconds": {
+            "type": "boolean"
+          },
+          "dateFormat": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "countFormat": {
+            "type": "string"
+          },
+          "effect": {
+            "type": "string"
+          },
+          "speed": {
+            "type": "number"
+          },
+          "strength": {
+            "type": "number"
+          },
+          "parallax": {
+            "type": "number"
+          },
+          "bars": {
+            "type": "number"
+          },
+          "plugin": {
+            "$defs": {
+              "condition": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "field": {
+                    "type": "string"
+                  },
+                  "op": {
+                    "enum": [
+                      "gt",
+                      "gte",
+                      "lt",
+                      "lte",
+                      "eq",
+                      "ne",
+                      "exists",
+                      "empty",
+                      "truthy"
+                    ]
+                  },
+                  "value": {},
+                  "all": {
+                    "type": "array",
+                    "maxItems": 20,
+                    "items": {
+                      "$ref": "#/$defs/condition"
+                    }
+                  },
+                  "any": {
+                    "type": "array",
+                    "maxItems": 20,
+                    "items": {
+                      "$ref": "#/$defs/condition"
+                    }
+                  },
+                  "not": {
+                    "$ref": "#/$defs/condition"
+                  }
+                }
+              }
+            },
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "definition",
+              "version",
+              "sourceId",
+              "field",
+              "view",
+              "options",
+              "appearance",
+              "rules",
+              "mappings",
+              "animations",
+              "css"
+            ],
+            "properties": {
+              "definition": {
+                "type": "string"
+              },
+              "version": {
+                "type": "integer",
+                "enum": [
+                  1
+                ]
+              },
+              "sourceId": {
+                "type": "string"
+              },
+              "field": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "view": {
+                "enum": [
+                  "number",
+                  "text",
+                  "icon",
+                  "progress",
+                  "ring",
+                  "gauge",
+                  "line",
+                  "bars",
+                  "list",
+                  "table",
+                  "calendar",
+                  "analog",
+                  "liquid",
+                  "segments",
+                  "container"
+                ]
+              },
+              "options": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "label",
+                  "unit",
+                  "precision",
+                  "min",
+                  "max",
+                  "scale",
+                  "offset",
+                  "empty",
+                  "template",
+                  "icon",
+                  "showIcon",
+                  "iconSize",
+                  "layout",
+                  "padding",
+                  "gap",
+                  "align",
+                  "showStatus",
+                  "showTitle",
+                  "history",
+                  "timezone",
+                  "target",
+                  "format",
+                  "hideWhenEmpty"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "unit": {
+                    "type": "string"
+                  },
+                  "precision": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 8
+                  },
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "offset": {
+                    "type": "number"
+                  },
+                  "empty": {
+                    "type": "string"
+                  },
+                  "template": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "showIcon": {
+                    "type": "boolean"
+                  },
+                  "iconSize": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "layout": {
+                    "enum": [
+                      "vertical",
+                      "horizontal",
+                      "compact",
+                      "expanded"
+                    ]
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "gap": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "align": {
+                    "enum": [
+                      "left",
+                      "center",
+                      "right"
+                    ]
+                  },
+                  "showStatus": {
+                    "type": "boolean"
+                  },
+                  "showTitle": {
+                    "type": "boolean"
+                  },
+                  "history": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 300
+                  },
+                  "timezone": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "type": "string"
+                  },
+                  "format": {
+                    "enum": [
+                      "default",
+                      "countdown",
+                      "elapsed",
+                      "pomodoro"
+                    ]
+                  },
+                  "hideWhenEmpty": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "appearance": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "preset": {
+                    "type": "string"
+                  },
+                  "color": {
+                    "type": "string"
+                  },
+                  "background": {
+                    "type": "string"
+                  },
+                  "backgroundOpacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "gradient": {
+                    "type": "string"
+                  },
+                  "shape": {
+                    "enum": [
+                      "rect",
+                      "rounded",
+                      "ellipse",
+                      "capsule"
+                    ]
+                  },
+                  "borderColor": {
+                    "type": "string"
+                  },
+                  "borderWidth": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2000
+                  },
+                  "borderStyle": {
+                    "enum": [
+                      "solid",
+                      "dashed",
+                      "dotted",
+                      "double"
+                    ]
+                  },
+                  "radius": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 2000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "radiusX": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 2000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "radiusY": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 2000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "shadow": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2000
+                  },
+                  "shadowColor": {
+                    "type": "string"
+                  },
+                  "shadowX": {
+                    "type": "number",
+                    "minimum": -2000,
+                    "maximum": 2000
+                  },
+                  "shadowY": {
+                    "type": "number",
+                    "minimum": -2000,
+                    "maximum": 2000
+                  },
+                  "blur": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2000
+                  },
+                  "glow": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2000
+                  },
+                  "font": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "fontSize": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  },
+                  "fontWeight": {
+                    "type": "number",
+                    "minimum": 100,
+                    "maximum": 900
+                  },
+                  "lineHeight": {
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 5
+                  },
+                  "letterSpacing": {
+                    "type": "number",
+                    "minimum": -200,
+                    "maximum": 200
+                  },
+                  "staleOpacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "transition": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 60000
+                  },
+                  "easing": {
+                    "type": "string"
+                  },
+                  "animations": {
+                    "type": "boolean"
+                  },
+                  "trackColor": {
+                    "type": "string"
+                  },
+                  "trackOpacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "chartWidth": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "chartHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000
+                  },
+                  "segmentCount": {
+                    "type": "integer",
+                    "minimum": 2,
+                    "maximum": 100
+                  },
+                  "segmentGap": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "segmentRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "segmentDirection": {
+                    "enum": [
+                      "horizontal",
+                      "vertical"
+                    ]
+                  },
+                  "segmentFill": {
+                    "enum": [
+                      "solid",
+                      "gradient"
+                    ]
+                  },
+                  "animationDuration": {
+                    "type": "number",
+                    "minimum": 100,
+                    "maximum": 60000
+                  }
+                }
+              },
+              "rules": {
+                "type": "array",
+                "maxItems": 40,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "when",
+                    "set"
+                  ],
+                  "properties": {
+                    "when": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "field": {
+                          "type": "string"
+                        },
+                        "op": {
+                          "enum": [
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "eq",
+                            "ne",
+                            "exists",
+                            "empty",
+                            "truthy"
+                          ]
+                        },
+                        "value": {},
+                        "all": {
+                          "type": "array",
+                          "maxItems": 20,
+                          "items": {
+                            "$ref": "#/$defs/condition"
+                          }
+                        },
+                        "any": {
+                          "type": "array",
+                          "maxItems": 20,
+                          "items": {
+                            "$ref": "#/$defs/condition"
+                          }
+                        },
+                        "not": {
+                          "$ref": "#/$defs/condition"
+                        }
+                      }
+                    },
+                    "set": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "color": {
+                          "type": "string"
+                        },
+                        "background": {
+                          "type": "string"
+                        },
+                        "opacity": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        "hidden": {
+                          "type": "boolean"
+                        },
+                        "icon": {
+                          "type": "string"
+                        },
+                        "animation": {
+                          "enum": [
+                            "none",
+                            "pulse",
+                            "glow"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "mappings": {
+                "type": "array",
+                "maxItems": 20,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "field",
+                    "target",
+                    "min",
+                    "max",
+                    "outMin",
+                    "outMax"
+                  ],
+                  "properties": {
+                    "field": {
+                      "type": "string"
+                    },
+                    "target": {
+                      "enum": [
+                        "opacity",
+                        "fontSize",
+                        "radius",
+                        "blur"
+                      ]
+                    },
+                    "min": {
+                      "type": "number"
+                    },
+                    "max": {
+                      "type": "number"
+                    },
+                    "outMin": {
+                      "type": "number"
+                    },
+                    "outMax": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "animations": {
+                "type": "array",
+                "maxItems": 10,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "target",
+                    "keyframes",
+                    "duration"
+                  ],
+                  "properties": {
+                    "target": {
+                      "enum": [
+                        "card",
+                        "value",
+                        "icon"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "minimum": 100,
+                      "maximum": 600000
+                    },
+                    "delay": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 600000
+                    },
+                    "iterations": {
+                      "enum": [
+                        "infinite",
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                      ]
+                    },
+                    "easing": {
+                      "type": "string"
+                    },
+                    "keyframes": {
+                      "type": "array",
+                      "maxItems": 20,
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "opacity": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          "transform": {
+                            "type": "string"
+                          },
+                          "color": {
+                            "type": "string"
+                          },
+                          "backgroundColor": {
+                            "type": "string"
+                          },
+                          "offset": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      }
+                    },
+                    "when": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "field": {
+                          "type": "string"
+                        },
+                        "op": {
+                          "enum": [
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "eq",
+                            "ne",
+                            "exists",
+                            "empty",
+                            "truthy"
+                          ]
+                        },
+                        "value": {},
+                        "all": {
+                          "type": "array",
+                          "maxItems": 20,
+                          "items": {
+                            "$ref": "#/$defs/condition"
+                          }
+                        },
+                        "any": {
+                          "type": "array",
+                          "maxItems": 20,
+                          "items": {
+                            "$ref": "#/$defs/condition"
+                          }
+                        },
+                        "not": {
+                          "$ref": "#/$defs/condition"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "css": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "enabled",
+                  "code"
+                ],
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "string",
+                    "maxLength": 100000
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "assets": {
+      "type": "array"
+    },
+    "sources": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "version",
+          "config",
+          "interval",
+          "staleAfter",
+          "timeout",
+          "historyLimit"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "clock",
+              "system",
+              "battery",
+              "weather",
+              "airquality",
+              "json",
+              "http",
+              "websocket",
+              "rss",
+              "status",
+              "media",
+              "derived",
+              "localfile"
+            ]
+          },
+          "version": {
+            "enum": [
+              1
+            ]
+          },
+          "config": {
+            "type": "object",
+            "description": "字段按 type 校验，详见 source-config-schemas.json"
+          },
+          "interval": {
+            "type": "number",
+            "minimum": 1000
+          },
+          "staleAfter": {
+            "type": "number",
+            "minimum": 1000
+          },
+          "timeout": {
+            "type": "number",
+            "minimum": 500,
+            "maximum": 30000
+          },
+          "historyLimit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 300
+          }
+        }
+      }
+    },
+    "pluginDefinitions": {
+      "type": "array"
+    },
+    "stylePresets": {
+      "type": "array"
+    },
+    "themeVariables": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "accent": {
+          "type": "string"
+        },
+        "foreground": {
+          "type": "string"
+        },
+        "background": {
+          "type": "string"
+        },
+        "font": {
+          "type": "string"
+        },
+        "radius": {
+          "type": "number"
+        }
+      }
+    },
+    "customCSS": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "string",
+          "maxLength": 100000
+        }
+      }
+    },
+    "extensions": {
+      "type": "object"
+    }
+  }
+}

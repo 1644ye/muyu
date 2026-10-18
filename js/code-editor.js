@@ -1,0 +1,19 @@
+/* Small offline code editor: highlighted overlay, completion, local undo and diagnostics. */
+(function(root){
+  const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
+  class CodeEditor {
+    constructor(host,{language='json',value='',validate=()=>[],onValid=()=>{},completions=[]}={}){this.host=host;this.language=language;this.validate=validate;this.onValid=onValid;this.completions=completions;this.history=[value];this.index=0;this.lastValid=value;this.wrapper=el('div','code-editor');this.pre=el('pre','code-highlight');this.area=el('textarea','code-input');this.area.spellcheck=false;this.area.setAttribute('aria-label',language==='css'?'CSS 代码':'JSON 配置');this.area.value=value;this.menu=el('div','code-completions');this.menu.hidden=true;this.diagnostics=el('pre','code-diagnostics');this.wrapper.append(this.pre,this.area,this.menu);host.append(this.wrapper,this.diagnostics);this.area.oninput=()=>{this.history.splice(this.index+1);this.history.push(this.area.value);if(this.history.length>120)this.history.shift();this.index=this.history.length-1;this.changed();};this.area.onscroll=()=>{this.pre.scrollTop=this.area.scrollTop;this.pre.scrollLeft=this.area.scrollLeft;};this.area.onkeydown=e=>{const mod=e.ctrlKey||e.metaKey;if(mod&&['z','y'].includes(e.key.toLowerCase())){e.preventDefault();if(e.key.toLowerCase()==='y'||e.shiftKey)this.redo();else this.undo();}if(e.key==='Tab'){e.preventDefault();this.insert('  ');}if(mod&&e.code==='Space'){e.preventDefault();this.complete();}if(e.key==='Escape')this.menu.hidden=true;};this.changed();}
+    get value(){return this.area.value;}
+    setValue(v){this.area.value=v;this.area.oninput();}
+    undo(){if(this.index>0){this.area.value=this.history[--this.index];this.changed();}}
+    redo(){if(this.index<this.history.length-1){this.area.value=this.history[++this.index];this.changed();}}
+    restore(){this.setValue(this.lastValid);}
+    insert(value){this.area.setRangeText(value,this.area.selectionStart,this.area.selectionEnd,'end');this.area.oninput();this.area.focus();}
+    complete(){this.menu.replaceChildren();for(const item of this.completions.slice(0,50)){const b=el('button','',typeof item==='string'?item:item.label);b.type='button';b.onclick=()=>{this.insert(typeof item==='string'?item:item.value);this.menu.hidden=true;};this.menu.append(b);}this.menu.hidden=!this.menu.hidden;}
+    format(){if(this.language!=='json')return;try{this.setValue(JSON.stringify(JSON.parse(this.value),null,2));}catch(e){this.diagnostics.textContent=e.message;}}
+    changed(){this.highlight();let result;try{result=this.validate(this.value)||[];}catch(e){result=[{message:e.message}];}this.errors=Array.isArray(result)?result:result.errors||[];this.diagnostics.textContent=this.errors.length?this.errors.map(e=>(e.path?e.path+' ':e.line?'第 '+e.line+' 行 ':'')+(e.message||e)).join('\n'):'✓ 配置有效';this.diagnostics.classList.toggle('invalid',!!this.errors.length);if(!this.errors.length){this.lastValid=this.value;this.onValid(this.value,result.value);} }
+    highlight(){this.pre.replaceChildren();const re=this.language==='json'?/("(?:\\.|[^"\\])*"\s*:)|("(?:\\.|[^"\\])*")|(-?\b\d+(?:\.\d+)?\b)|(\btrue\b|\bfalse\b|\bnull\b)/g:/(\/\*[\s\S]*?\*\/)|([.#:]?[\w-]+(?=\s*\{))|(--?[\w-]+(?=\s*:)|[a-z-]+(?=\s*:))|(#[\da-fA-F]{3,8}\b|\b\d+(?:\.\d+)?(?:px|ms|s|%|em)?\b)|("[^"\n]*"|'[^'\n]*')/g;let end=0;for(const m of this.value.matchAll(re)){this.pre.append(document.createTextNode(this.value.slice(end,m.index)));const span=el('span','syntax-'+(m[1]?'key':m[2]?'string':m[3]?'number':'literal'),m[0]);this.pre.append(span);end=m.index+m[0].length;}this.pre.append(document.createTextNode(this.value.slice(end)+'\n'));}
+    destroy(){this.area.oninput=null;this.area.onkeydown=null;this.area.onscroll=null;this.host.replaceChildren();}
+  }
+  root.MuyuCodeEditor=CodeEditor;
+})(globalThis);

@@ -1,0 +1,2 @@
+.muyu-value { font-family: Consolas, monospace; text-shadow: 0 0 18px currentColor; }
+.muyu-title::before { content: "◉ "; }

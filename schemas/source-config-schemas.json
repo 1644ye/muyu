@@ -1,0 +1,316 @@
+{
+  "clock": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "timezone": {
+        "type": "string"
+      },
+      "hour12": {
+        "type": "boolean"
+      },
+      "seconds": {
+        "type": "boolean"
+      }
+    }
+  },
+  "system": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "url": {
+        "type": "string"
+      },
+      "adapter": {
+        "type": "string"
+      }
+    }
+  },
+  "battery": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "url": {
+        "type": "string"
+      },
+      "useBrowser": {
+        "type": "boolean"
+      }
+    }
+  },
+  "weather": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "latitude": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "longitude": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "city": {
+        "type": "string"
+      },
+      "cities": {
+        "type": "array",
+        "maxItems": 20,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "latitude": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -90,
+                  "maximum": 90
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "longitude": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "cityIndex": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 19
+      },
+      "temperatureUnit": {
+        "enum": [
+          "celsius",
+          "fahrenheit"
+        ]
+      }
+    }
+  },
+  "airquality": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "latitude": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "longitude": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "city": {
+        "type": "string"
+      },
+      "cities": {
+        "type": "array",
+        "maxItems": 20,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "latitude": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -90,
+                  "maximum": 90
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "longitude": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "cityIndex": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 19
+      }
+    }
+  },
+  "json": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "data": {
+        "anyOf": [
+          {
+            "type": "object"
+          },
+          {
+            "type": "array"
+          }
+        ]
+      }
+    }
+  },
+  "http": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "url": {
+        "type": "string"
+      },
+      "credentialRef": {
+        "type": "string"
+      },
+      "useProxy": {
+        "type": "boolean"
+      },
+      "proxyId": {
+        "type": "string"
+      },
+      "headers": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "websocket": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "url": {
+        "type": "string"
+      }
+    }
+  },
+  "rss": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "url": {
+        "type": "string"
+      }
+    }
+  },
+  "status": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "url": {
+        "type": "string"
+      }
+    }
+  },
+  "media": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  },
+  "derived": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "inputs": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sourceId",
+            "path"
+          ],
+          "properties": {
+            "sourceId": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "operation": {
+        "enum": [
+          "sum",
+          "average",
+          "difference",
+          "ratio",
+          "min",
+          "max"
+        ]
+      }
+    }
+  },
+  "localfile": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "url": {
+        "type": "string"
+      },
+      "filename": {
+        "type": "string"
+      }
+    }
+  }
+}

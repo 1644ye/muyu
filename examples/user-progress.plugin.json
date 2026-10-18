@@ -1,0 +1,31 @@
+{
+  "format": "muyu-declarative-plugin",
+  "version": 1,
+  "definition": {
+    "id": "user.focus",
+    "name": "专注进度",
+    "version": "1.0.0",
+    "description": "使用通用 JSON 源的声明式进度，不执行代码",
+    "provider": "json",
+    "field": "value",
+    "unit": "%",
+    "view": "ring",
+    "fields": [
+      {
+        "path": "value",
+        "label": "进度",
+        "unit": "%"
+      }
+    ],
+    "defaults": {
+      "title": "专注的每一步",
+      "unit": "%"
+    },
+    "appearance": {
+      "preset": "neon",
+      "background": "#17112b",
+      "color": "#c3a6ff",
+      "glow": 14
+    }
+  }
+}

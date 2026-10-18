@@ -1,0 +1,15 @@
+{
+  "format": "muyu-theme",
+  "version": 1,
+  "themeVariables": {
+    "accent": "#b7e4ce",
+    "foreground": "#e8f1ed",
+    "background": "#13251f",
+    "font": "\"Segoe UI\", \"Microsoft YaHei\", sans-serif",
+    "radius": 24
+  },
+  "customCSS": {
+    "enabled": false,
+    "code": ":host { --muyu-accent: #b7e4ce; }"
+  }
+}

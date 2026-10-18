@@ -1,0 +1,35 @@
+# Machine credentials, private exports and local service state
+.runtime/
+exports/
+**/local-connection.js
+companion/data/*
+!companion/data/示例.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+# Dependencies and build output
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.tmp/
+tmp/
+*.log
+*.pid
+*.tmp
+*.bak
+*.zip
+examples/*/wallpaper/
+# Generated QA output (documentation screenshots remain)
+docs/*-results.json
+docs/*-test-results.txt
+# Editor and OS metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

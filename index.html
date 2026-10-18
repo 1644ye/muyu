@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111619"><title>幕予 · 动态壁纸工作室</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" title="幕予动态壁纸工作室"><span class="brand-mark">m</span><span>幕予 <small>STUDIO</small></span></a>
+    <div class="project-heading"><button id="project-menu" title="新建、打开、另存为">▤ <span>文件</span>⌄</button><input id="project-name" aria-label="项目名称" maxlength="100"><span id="save-status" role="status">正在打开…</span></div>
+    <div class="top-actions"><button id="undo" title="撤销 Ctrl+Z" aria-label="撤销">↶</button><button id="redo" title="重做 Ctrl+Shift+Z" aria-label="重做">↷</button><i></i><button id="preview">▷ <span>预览</span></button><button class="primary" id="export">↗ 导出壁纸</button></div>
+  </header>
+  <main class="workspace">
+    <nav class="rail" aria-label="编辑工具"><button data-tab="templates" class="active"><b>▦</b>模板</button><button data-tab="plugins"><b>◈</b>信息插件</button><button data-tab="assets"><b>▧</b>素材</button><button data-tab="add"><b>＋</b>组件</button><button data-tab="layers"><b>▱</b>图层</button><button id="open-code"><b>⌘</b>CSS / JSON</button><button id="help" class="rail-bottom"><b>?</b>帮助</button></nav>
+    <aside class="library"><div class="panel-title"><h2 id="library-title">灵感模板</h2><span id="library-count">06</span></div><div id="library-content"></div></aside>
+    <section class="canvas-area">
+      <div class="canvas-toolbar"><div><span class="live-dot"></span>实时画布 <span class="dim" id="audio-status"></span></div><div><button id="snap" class="toggled" title="参考线与吸附">⊞ 吸附</button><button id="guides" class="toggled" title="显示安全参考线">╋ 参考线</button><button id="fit-view" title="适应窗口">⌗ 适应</button></div></div>
+      <div id="viewport"><div id="canvas-shell"><div id="render-host"></div><div id="selection-overlay" aria-label="画布编辑区域"></div></div><div id="drop-hint">松开以导入图片、视频或字体</div></div>
+      <div class="canvas-hint"><span>拖动调整位置 · Shift 多选 · 双击文字编辑</span><span id="selection-caption">你的桌面，你的节奏</span></div>
+      <footer class="statusbar"><button id="size-button">1920 × 1080 ⌄</button><select id="aspect-preview" aria-label="屏幕比例预览"><option value="design">设计画布</option><option value="wide">21:9 超宽屏</option><option value="portrait">9:16 竖屏</option><option value="standard">16:9 屏幕</option></select><div class="status-spacer"></div><label>画质 <select id="quality"><option value="low">低 · 20 FPS</option><option value="medium" selected>中 · 30 FPS</option><option value="high">高 · 60 FPS</option></select></label><button id="zoom-out" title="缩小">−</button><span id="zoom-label">适应</span><button id="zoom-in" title="放大">＋</button></footer>
+    </section>
+    <aside class="inspector"><div class="panel-title"><h2 id="inspector-title">画布设置</h2><button id="deselect" title="取消选择，显示画布设置">⌘</button></div><div id="properties"></div></aside>
+  </main>
+  <input type="file" id="asset-input" multiple accept="image/png,image/jpeg,image/webp,image/gif,video/webm,video/ogg,.ogv,.woff,.woff2,.ttf,.otf" hidden>
+  <input type="file" id="project-input" accept=".zip,.muyu" hidden>
+  <dialog id="modal"><button class="dialog-close" id="close-modal" title="关闭">×</button><div id="modal-content"></div></dialog>
+  <div id="toasts" aria-live="polite"></div>
+  <script src="js/info-model.js"></script><script src="js/info-css.js"></script><script src="js/info-runtime.js"></script><script src="js/info-view.js"></script><script src="js/scene.js"></script><script src="js/zip.js"></script><script src="js/templates.js"></script><script src="js/package.js"></script><script src="js/renderer.js"></script><script src="js/adapter.js"></script><script src="js/storage.js"></script><script src="js/code-editor.js"></script><script src="js/info-editor.js"></script><script src="js/app.js"></script>
+</body></html>
